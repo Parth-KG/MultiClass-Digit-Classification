@@ -57,7 +57,7 @@ def train():
     
     print(f"Test Accuracy: {accuracy:.2f}%")
     
-    # Optional: Plot the loss curve
+    # Plot the loss curve
     plt.plot(losses)
     plt.title("Training Loss")
     plt.xlabel("Iterations (x100)")
