@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 
 def preprocess_data(X, y):
     X_normalized = X / 255.0
+
     num_classes = 10
     y_onehot = np.eye(num_classes)[y]
 
@@ -17,6 +18,7 @@ def preprocess_data(X, y):
     return X_train.T, X_test.T, y_train.T, y_test.T
 
 if __name__ == "__main__":
+    # Assuming you have the load_binary_mnist function from before
     from data_loader import load_mnist
     
     X_raw, y_raw = load_mnist()

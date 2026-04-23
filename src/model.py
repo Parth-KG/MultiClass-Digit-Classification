@@ -18,6 +18,7 @@ class MultiClassNN:
         return expZ / np.sum(expZ, axis=0, keepdims=True)
 
     def forward(self, X):
+        # Forward Prop
         Z1 = np.dot(self.W1, X) + self.b1
         A1 = self.relu(Z1)
         Z2 = np.dot(self.W2, A1) + self.b2
@@ -32,7 +33,7 @@ class MultiClassNN:
         return loss
 
     def backward(self, X, Y, cache):
-        m = X.shape[1]
+        m = X.shape[1] # Number of examples
         A1 = cache["A1"]
         A2 = cache["A2"]
         Z1 = cache["Z1"]
@@ -44,7 +45,7 @@ class MultiClassNN:
         
         # 2. Hidden Layer Gradients
         dA1 = np.dot(self.W2.T, dZ2)
-        dZ1 = dA1 * self.relu_derivative(Z1)
+        dZ1 = dA1 * self.relu_derivative(Z1) # Element-wise multiply
         dW1 = (1 / m) * np.dot(dZ1, X.T)
         db1 = (1 / m) * np.sum(dZ1, axis=1, keepdims=True)
         

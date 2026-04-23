@@ -38,7 +38,7 @@ python train.py
 | Architecture | 784 → 64 → 10 |
 | Epochs | 2000 |
 | Learning Rate | 0.005 |
-| Test Accuracy | ~76.74% |
+| Test Accuracy | ~XX% |
 
 > Update the accuracy after training.
 
