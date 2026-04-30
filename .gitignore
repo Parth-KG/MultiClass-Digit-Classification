@@ -21,6 +21,7 @@ __pycache__/
 
 .DS_Store
 Thumbs.db
+<<<<<<< HEAD
 EOF.DS_Store
 venv/
 __pycache__/
@@ -29,3 +30,6 @@ __pycache__/
 venv/
 __pycache__/
 *.npy
+=======
+EOF
+>>>>>>> 14c1de3 (Model Improved)
