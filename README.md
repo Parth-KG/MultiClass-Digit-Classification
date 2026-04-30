@@ -86,7 +86,7 @@ The training loop uses mini-batch SGD with shuffling each epoch. After each epoc
 | Epochs | 2000 | 30 |
 | Learning rate | 0.005 | 0.1 |
 | Gradient updates per run | 2,000 | ~26,000 |
-| Test Accuracy | ~76.74% | **~95–97%** |
+| Test Accuracy | ~76.74% | **~97%** |
 
 > Update the final accuracy after running training on your machine.
 
