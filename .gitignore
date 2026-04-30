@@ -21,4 +21,11 @@ __pycache__/
 
 .DS_Store
 Thumbs.db
-EOF
+EOF.DS_Store
+venv/
+__pycache__/
+*.npy
+.DS_Store
+venv/
+__pycache__/
+*.npy
