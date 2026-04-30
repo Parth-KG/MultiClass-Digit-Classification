@@ -2,9 +2,9 @@ import numpy as np
 
 class MultiClassNN:
     def __init__(self, input_size, hidden_size, output_size):
-        self.W1 = np.random.randn(hidden_size, input_size) * 0.01
+        self.W1 = np.random.randn(hidden_size, input_size) * np.sqrt(2.0 / input_size)
         self.b1 = np.zeros((hidden_size, 1))
-        self.W2 = np.random.randn(output_size, hidden_size) * 0.01
+        self.W2 = np.random.randn(output_size, hidden_size) * np.sqrt(2.0 / hidden_size)
         self.b2 = np.zeros((output_size, 1))
 
     def relu(self, Z):
