@@ -1,25 +1,20 @@
 import numpy as np
-from PIL import Image, ImageOps
+import os   
+from PIL import Image
 from model import MultiClassNN
 import sys
 
 def preprocess_image(image_path):
     img = Image.open(image_path).convert("L")
-    img = ImageOps.invert(img)
-    img = img.point(lambda x: 0 if x < 200 else 255)  # was 128, now 200
-    bbox = img.getbbox()
-    if bbox:
-        img = img.crop(bbox)
-    img = img.resize((20, 20), Image.LANCZOS)
-    padded = Image.new("L", (28, 28), 0)
-    padded.paste(img, (4, 4))
-    X = np.array(padded) / 255.0
+    img = img.resize((28, 28), Image.LANCZOS)
+    X = np.array(img) / 255.0
     return X.reshape(784, 1)
 
 def predict(image_path):
     X = preprocess_image(image_path)
 
-    weights = np.load("weights.npy", allow_pickle=True).item()
+    weights_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "weights.npy")
+    weights = np.load(weights_path, allow_pickle=True).item()
     model = MultiClassNN(784, 64, 10)
     model.W1, model.b1 = weights["W1"], weights["b1"]
     model.W2, model.b2 = weights["W2"], weights["b2"]
