@@ -12,7 +12,7 @@ def load_mnist():
     # Convert labels to integers
     y_all = y_all.astype(np.uint8)
 
-    print(f"Dataset shape: {X_all.shape}") # Should be approx 14k images
+    print(f"Dataset shape: {X_all.shape}") # Should be (70000, 784): all ten digits
     return X_all, y_all
 
 if __name__ == "__main__":
