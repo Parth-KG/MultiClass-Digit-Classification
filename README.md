@@ -17,10 +17,14 @@ A multi-class neural network built **from scratch using NumPy** to classify hand
 .
 ├── src/
 │   ├── data_loader.py      # Fetches MNIST from OpenML
-│   ├── preprocessing.py    # Normalizes and one-hot encodes labels
+│   ├── preprocessing.py    # Normalizes, one-hot encodes, 80/20 split
 │   ├── model.py            # Neural network (forward, backward, loss)
-│   └── train.py            # Mini-batch training loop and evaluation
+│   ├── train.py            # Mini-batch training loop and evaluation
+│   ├── predict.py          # Classifies your own digit image
+│   └── weights.npy         # Trained weights saved by train.py
+├── assets/                 # Sample digits and the loss curve
 ├── requirements.txt
+├── LICENSE
 └── README.md
 ```
 
@@ -33,8 +37,8 @@ A multi-class neural network built **from scratch using NumPy** to classify hand
 ### 1. Clone and enter the project
 
 ```bash
-git clone https://github.com/Parth-KG/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/Parth-KG/MultiClass-Digit-Classification.git
+cd MultiClass-Digit-Classification
 ```
 
 ### 2. Create and activate a virtual environment
@@ -64,9 +68,19 @@ cd src
 python train.py
 ```
 
+### 5. Classify your own image
+
+From `src/`:
+
+```bash
+python predict.py ../assets/3.png
+```
+
+`predict.py` loads `weights.npy`, shrinks the image to 28×28 grayscale and prints the predicted digit. Trained weights are included, so this works before you train. Like MNIST and the samples in `assets/`, digits should be light on a dark background.
+
 ## Training Details
 
-The training loop uses mini-batch SGD with shuffling each epoch. After each epoch, both the average loss and training accuracy are printed so you can monitor progress in real time.
+The 70,000 images are split 80/20 with a fixed seed: 56,000 for training, 14,000 held out for testing. The training loop uses mini-batch SGD with shuffling each epoch. After each epoch, both the average loss and training accuracy are printed so you can monitor progress in real time.
 
 | Hyperparameter | Value |
 |----------------|-------|
@@ -79,16 +93,18 @@ The training loop uses mini-batch SGD with shuffling each epoch. After each epoc
 
 ## Results
 
-| Metric | Before | After |
+| | Before | After |
 |--------|--------|-------|
 | Weight init | `* 0.01` | He init |
 | Optimizer | Full-batch GD | Mini-batch SGD |
 | Epochs | 2000 | 30 |
 | Learning rate | 0.005 | 0.1 |
 | Gradient updates per run | 2,000 | ~26,000 |
-| Test Accuracy | ~76.74% | **~95–97%** |
+| Test accuracy | 76.74% | **97.26%** |
 
-> Update the final accuracy after running training on your machine.
+97.26% is the committed `weights.npy` on the 14,000 held-out images; training accuracy is 99.59%.
+
+![Training loss over 30 epochs](assets/Figure_1.png)
 
 ## Why the Accuracy Jumped
 
@@ -114,6 +130,7 @@ Possible upgrades, in rough order of impact:
 - NumPy
 - scikit-learn (dataset only)
 - Matplotlib (loss curve)
+- Pillow (image loading in `predict.py`)
 
 ## Author
 
