@@ -1,8 +1,6 @@
-cat > .gitignore << 'EOF'
 venv/
 env/
 .venv/
-.DS_Store
 
 __pycache__/
 *.pyc
@@ -10,6 +8,7 @@ __pycache__/
 *.pyd
 
 *.npy
+!src/weights.npy
 *.npz
 *.pkl
 *.h5
@@ -22,15 +21,3 @@ __pycache__/
 
 .DS_Store
 Thumbs.db
-<<<<<<< HEAD
-EOF.DS_Store
-venv/
-__pycache__/
-*.npy
-.DS_Store
-venv/
-__pycache__/
-*.npy
-=======
-EOF
->>>>>>> 14c1de3 (Model Improved)
